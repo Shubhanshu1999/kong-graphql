@@ -1,10 +1,11 @@
 const { ApolloServer, gql } = require("apollo-server");
-const { buildSubgraphSchema } = require("@apollo/subgraph");
+const { buildFederatedSchema } = require("@apollo/federation");
 const axios = require("axios");
+const { api } = require("../../util");
 
 const typeDefs = gql`
   extend type Query {
-    products: [Product]
+    topProducts(first: Int = 5): [Product]
   }
 
   type Product @key(fields: "upc") {
@@ -17,19 +18,17 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    products(_, args) {
-      return products;
+    async topProducts(_, args) {
+      const products = await axios(`${api}/products`)
+        .then((res) => res.data)
+        .catch((err) => console.log(err));
+      return products.splice(0, args.first);
     },
-  },
-  //   Product: {
-  //     __resolveReference(object) {
-  //       return products.find((product) => product.upc === object.upc);
-  //     },
-  //   },
+  }
 };
 
 const server = new ApolloServer({
-  schema: buildSubgraphSchema([
+  schema: buildFederatedSchema([
     {
       typeDefs,
       resolvers,
@@ -37,22 +36,6 @@ const server = new ApolloServer({
   ]),
 });
 
-server.listen({ port: 4003 }).then(({ url }) => {
+server.listen({ port: 4001 }).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
-});
-
-let products = [];
-axios.get("http://localhost:3000/products").then((res) => {
-  res.data.forEach((element) => {
-    const newProduct = {
-      upc: element.upc,
-      name: element.name,
-      price: element.price,
-      weight: element.weight,
-    };
-
-    products.push(newProduct);
-  });
-
-  console.log(products);
 });
