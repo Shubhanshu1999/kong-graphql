@@ -1,0 +1,23 @@
+{
+  "name": "federation-demo",
+  "main": "gateway.js",
+  "scripts": {
+    "start-gateway": "nodemon gql_gateway/gateway.js",
+    "start-gql-service-products": "nodemon gql_gateway/services/products/index.js",
+    "start-gql-service-reviews": "nodemon gql_gateway/services/reviews/index.js",
+    "start-gql-service-users": "nodemon gql_gateway/services/users/index.js",
+    "start-gql-services": "concurrently \"npm:start-gql-service-*\"",
+    "postinstall": "lerna bootstrap"
+  },
+  "devDependencies": {
+    "lerna": "latest",
+    "nodemon": "latest",
+    "concurrently": "latest"
+  },
+  "dependencies": {
+    "@apollo/gateway": "latest",
+    "apollo-server": "latest",
+    "axios": "^0.24.0",
+    "graphql": "latest"
+  }
+}

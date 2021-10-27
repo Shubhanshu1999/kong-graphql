@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,11 +10,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document
+@Document(collection = "reviews")
 public class Review {
 	@Id
-	private ObjectId _id;
-    private Integer id;
+	private String id;
     private String authorID;
     private Product product;
     private String body;

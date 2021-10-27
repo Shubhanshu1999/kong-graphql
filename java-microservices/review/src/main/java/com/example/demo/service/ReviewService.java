@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,8 @@ public class ReviewService {
 		return reviewRepo.findAll();
 	}
 	
-	public Review findById(Integer id) {
-		return reviewRepo.findById(id);
+	public Review findById(String id) {
+		Optional<Review> review = reviewRepo.findById(id);
+		return review.orElseThrow();
 	}
 }

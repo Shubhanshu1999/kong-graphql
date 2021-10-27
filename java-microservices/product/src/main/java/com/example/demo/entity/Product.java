@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -9,9 +10,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document
+@Document(collection = "products")
 public class Product {
-	private Integer upc;
+	@Id
+	private String id;
+	private String upc;
 	private String name;
 	private Integer price;
 	private Integer weight;

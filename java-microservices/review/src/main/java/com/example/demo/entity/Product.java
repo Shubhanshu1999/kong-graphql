@@ -9,10 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document
+@Document(collection = "products")
 public class Product {
 	private Integer upc;
-	private String name;
-	private Integer price;
-	private Integer weight;
 }

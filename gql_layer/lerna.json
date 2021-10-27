@@ -1,0 +1,4 @@
+{
+  "packages": ["gql_gateway/services/*"],
+  "version": "independent"
+}

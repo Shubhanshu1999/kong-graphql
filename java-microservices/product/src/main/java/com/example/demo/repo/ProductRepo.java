@@ -4,6 +4,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.example.demo.entity.Product;
 
-public interface ProductRepo extends MongoRepository<Product, Integer>{
-	public Product findByUpc(Integer upc);
+public interface ProductRepo extends MongoRepository<Product, String>{
+	public Product findByUpc(String upc);
 }

@@ -17,7 +17,7 @@ public class ProductService {
 		return productRepo.findAll();
 	}
 	
-	public Product findByUpc(Integer upc) {
+	public Product findByUpc(String upc) {
 		return productRepo.findByUpc(upc);
 	}
 	

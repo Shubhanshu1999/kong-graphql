@@ -26,9 +26,9 @@ public class ProductController {
 		return productService.findAll();
 	}
 	
-	@GetMapping("/product/{id}")
-	public Product finrdByUPC(@PathVariable Integer id) {
-		return productService.findByUpc(id);
+	@GetMapping("/product/{upc}")
+	public Product findByUPC(@PathVariable String upc) {
+		return productService.findByUpc(upc);
 		
 	}
 }
