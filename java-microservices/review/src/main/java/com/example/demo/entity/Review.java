@@ -16,7 +16,7 @@ public class Review {
 	@Id
 	private ObjectId _id;
     private Integer id;
-    private String authorId;
+    private String authorID;
     private Product product;
     private String body;
 }

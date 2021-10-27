@@ -1,7 +1,7 @@
 const { ApolloServer, gql } = require("apollo-server");
 const { buildFederatedSchema } = require("@apollo/federation");
 const axios = require("axios");
-const { api } = require("../../util");
+const { product_api } = require("../../util");
 
 const typeDefs = gql`
   extend type Query {
@@ -19,7 +19,7 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     async topProducts(_, args) {
-      const products = await axios(`${api}/products`)
+      const products = await axios(product_api)
         .then((res) => res.data)
         .catch((err) => console.log(err));
       return products.splice(0, args.first);
