@@ -51,3 +51,8 @@ typings/
 
 # environment variables
 .env
+gql_gateway/services/reviews/package-lock.json
+gql_gateway/services/products/package-lock.json
+gql_gateway/services/users/package-lock.json
+microservices/users-service/mvnw.cmd
+microservices/users-service/mvnw
